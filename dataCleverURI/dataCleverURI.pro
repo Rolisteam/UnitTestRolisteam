@@ -1,4 +1,4 @@
-include(../TestUnitRolisteam.pri)
+include(../UnitTestRolisteam.pri)
 
 
 TARGET = tst_datacleveruritest
@@ -8,10 +8,11 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-HEADERS += $$ROLISTEAMSRC/src/data/cleveruri.h
-
+HEADERS += ../$$ROLISTEAMSRC/src/data/cleveruri.h
 
 
 SOURCES += \
     tst_datacleveruritest.cpp \
-    $$ROLISTEAMSRC/src/data/cleveruri.cpp
+    ../$$ROLISTEAMSRC/src/data/cleveruri.cpp
+
+INCLUDEPATH += ../$$ROLISTEAMSRC/src/data/

@@ -21,6 +21,7 @@
 
 #include "Image.h"
 #include "cleveruri.h"
+
 class PictureTest : public QObject
 {
     Q_OBJECT
@@ -28,7 +29,7 @@ class PictureTest : public QObject
 public:
     PictureTest();
 
-private Q_SLOTS:
+private slots:
     void initTestCase();
     void cleanupTestCase();
    // void testGetSet();

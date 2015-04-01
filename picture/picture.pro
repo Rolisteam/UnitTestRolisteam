@@ -1,4 +1,4 @@
-include(../TestUnitRolisteam.pri)
+include(../UnitTestRolisteam.pri)
 
 TEMPLATE = app
 
@@ -12,19 +12,13 @@ CONFIG   += console
 CONFIG   -= app_bundle
 
 
-HEADERS +=  $$ROLISTEAMSRC/src/Image.h \
-            $$ROLISTEAMSRC/src/colorselector.h \
-            $$ROLISTEAMSRC/src/preferences/preferencesmanager.h \
-            $$ROLISTEAMSRC/src/submdiwindows.h \
-cleveruri.h \
-connection.h \
-            $$ROLISTEAMSRC/src/widget/colortablechooser.h
+HEADERS +=  ../$$ROLISTEAMSRC/src/Image.h \
+            ../$$ROLISTEAMSRC/src/widgets/colorselector.h \
+            ../$$ROLISTEAMSRC/src/data/cleveruri.h \
+            ../$$ROLISTEAMSRC/src/widgets/colortablechooser.h
 
-SOURCES +=  $$ROLISTEAMSRC/src/Image.cpp \
-            $$ROLISTEAMSRC/src/colorselector.cpp \
-            $$ROLISTEAMSRC/src/preferences/preferencesmanager.cpp \
-            $$ROLISTEAMSRC/src/submdiwindows.cpp\
-cleveruri.cpp \
-connection.cpp \
-            $$ROLISTEAMSRC/src/widget/colortablechooser.cpp \
+SOURCES +=  ../$$ROLISTEAMSRC/src/Image.cpp \
+            ../$$ROLISTEAMSRC/src/widgets/colorselector.cpp \
+            ../$$ROLISTEAMSRC/src/data/cleveruri.cpp \
+            ../$$ROLISTEAMSRC/src/widgets/colortablechooser.cpp \
             tst_picturetest.cpp

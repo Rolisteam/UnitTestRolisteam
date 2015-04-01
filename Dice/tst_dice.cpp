@@ -23,6 +23,7 @@
 #include <QtCore/QCoreApplication>
 
 #include "die.h"
+#include "diceparser.h"
 
 class TestDice : public QObject
 {
@@ -33,11 +34,17 @@ public:
 
 private slots:
     void initTestCase();
-    void cleanupTestCase();
+    void getAndSetTest();
     void diceRollD10Test();
+    void diceRollD20Test();
+    void commandEndlessLoop();
+    void commandsTest();
+
+    void cleanupTestCase();
 
     private:
     Die* m_die;
+    DiceParser* m_diceParser;
 };
 
 TestDice::TestDice()
@@ -47,12 +54,23 @@ TestDice::TestDice()
 void TestDice::initTestCase()
 {
     m_die = new Die();
-
+    m_diceParser = new DiceParser();
 }
 
-void TestDice::cleanupTestCase()
+void TestDice::getAndSetTest()
 {
-    delete m_die;
+    for(int i = 0; i<2000;i++)
+    {
+        m_die->setFaces(i);
+        QVERIFY(m_die->getFaces()==i);
+    }
+
+    m_die->setSelected(true);
+    QVERIFY(m_die->isSelected()==true);
+
+    m_die->setSelected(false);
+    QVERIFY(m_die->isSelected()==false);
+
 }
 
 void TestDice::diceRollD10Test()
@@ -65,6 +83,73 @@ void TestDice::diceRollD10Test()
         QVERIFY(m_die->getValue()<11);
     }
 
+}
+void TestDice::diceRollD20Test()
+{
+    m_die->setFaces(20);
+    for(int i = 0; i< 2000; i++)
+    {
+        m_die->roll(false);
+        QVERIFY(m_die->getValue()>0);
+        QVERIFY(m_die->getValue()<21);
+    }
+}
+void TestDice::commandEndlessLoop()
+{
+    bool a = m_diceParser->parseLine("1D10e[>0]");
+    QVERIFY(a==false);
+}
+
+void TestDice::commandsTest()
+{
+    QStringList commands;
+
+    commands << "1L[cheminée,chocolat,épée,arc,chute de pierre]"
+            << "10d10c[>=6]-@c[=1]"
+            << "10d10c[>=6]-@c[=1]-@c[=1]"
+            << "10d10c[>6]+@c[=10]"
+            << "1+1D10"
+            << "3d10c[>=5]"
+            << "3nwod"
+            << "1+(4*3)D10"
+            << "2+4/4"
+            << "2D10*2D20*8"
+            <<"1+(4*3)D10"
+            <<"(4D6)D10"
+            << "1D100a[>=95]a[>=96]a[>=97]a[>=98]a[>=99]e[>=100]"
+            << "3D100"
+            << "4k3"
+            << "10D10e[>=6]sc[>=6]"
+            << "100190D6666666s"
+            << "10D10e10s"
+            << "10D10s"
+            << "15D10e10c[8-10]"
+            << "10d10e11"
+            << "1D8+2D6+7"
+            << "D25"
+            << "D25+D10"
+            << "D25;D10"
+            << "8+8+8"
+            << "1D20-88"
+            << "100*1D20*2D6"
+            << "100/28*3"
+            << "100/8"
+            << "100*3*8"
+            << "help"
+            << "la"
+            << "400000D20/400000"
+            << "100*3*8";
+    foreach(QString cmd, commands)
+    {
+        bool a = m_diceParser->parseLine(cmd);
+        qDebug() << cmd << a;
+        QVERIFY(a==true);
+    }
+}
+
+void TestDice::cleanupTestCase()
+{
+    delete m_die;
 }
 
 QTEST_MAIN(TestDice);

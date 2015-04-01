@@ -20,7 +20,7 @@
 
 #include <QtCore/QString>
 #include <QtTest/QtTest>
-#include <data/cleveruri.h>
+#include <cleveruri.h>
 
 class DataCleverURITest : public QObject
 {
@@ -68,18 +68,17 @@ void DataCleverURITest::testCleverURISetGet()
     m_cleverURI->setType(CleverURI::SONG);
     QVERIFY2(m_cleverURI->getType()==CleverURI::SONG,"SONG is not the current type");
 
-    m_cleverURI->setType(CleverURI::TCHAT);
-    QVERIFY2(m_cleverURI->getType()==CleverURI::TCHAT,"TCHAT is not the current type");
+    m_cleverURI->setType(CleverURI::CHAT);
+    QVERIFY2(m_cleverURI->getType()==CleverURI::CHAT,"TCHAT is not the current type");
 
     m_cleverURI->setType(CleverURI::TEXT);
     QVERIFY2(m_cleverURI->getType()==CleverURI::TEXT,"TEXT is not the current type");
-
 
     QString path("/foo/bar/file.map");
     m_cleverURI->setUri(path);
     QVERIFY2(m_cleverURI->getUri()==path,"URI is wrong!");
 
-    QVERIFY2(m_cleverURI->getShortName()=="file.map","ShortName is wrong!");
+    QVERIFY2(m_cleverURI->getShortName()=="file","ShortName is wrong!");
 
     QVERIFY2(m_cleverURI->hasChildren()==false,"CleverURI has children, that should not be!");
 }
