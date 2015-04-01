@@ -39,7 +39,7 @@ private slots:
     void diceRollD20Test();
     void commandEndlessLoop();
     void commandsTest();
-
+    void wrongCommandsTest();
     void cleanupTestCase();
 
     private:
@@ -144,6 +144,22 @@ void TestDice::commandsTest()
         bool a = m_diceParser->parseLine(cmd);
         qDebug() << cmd << a;
         QVERIFY(a==true);
+    }
+}
+void TestDice::wrongCommandsTest()
+{
+    QStringList commands;
+
+    commands << "1L[cheminée,chocolat,épée,arc,chute de pierre"
+            << "10d10c"
+            << "10d10a"
+            << "10+10s"
+            << "1/0";
+    foreach(QString cmd, commands)
+    {
+        bool a = m_diceParser->parseLine(cmd);
+        qDebug() << cmd << a;
+        QVERIFY(a==false);
     }
 }
 
