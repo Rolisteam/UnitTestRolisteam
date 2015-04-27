@@ -5,7 +5,9 @@ DEFINES =DSTDIR=$$SRCDIR
 SUBDIRS = \
     Dice \
     dataCleverURI \
-#    picture \
+    preferences \
+    rolisteamtheme
+    #picture \
 #    dataChapter \ #chat MainWindow  picture   map Dice
   #  dataplayer \
    # dataCharacter \

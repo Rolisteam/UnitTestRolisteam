@@ -42,8 +42,7 @@ DEFINES += VERSION_MAJOR=1 VERSION_MIDDLE=7 VERSION_MINOR=0
 
 TEMPLATE=app
 QT += core \
- gui \
  network \
- testlib \
- widgets
+ testlib
+
 
