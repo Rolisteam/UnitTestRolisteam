@@ -41,8 +41,9 @@ private slots:
     void commandsTest();
     void wrongCommandsTest();
     void cleanupTestCase();
+    void wrongCommandsExecutionTimeTest();
 
-    private:
+private:
     Die* m_die;
     DiceParser* m_diceParser;
 };
@@ -59,7 +60,7 @@ void TestDice::initTestCase()
 
 void TestDice::getAndSetTest()
 {
-    for(int i = 0; i<2000;i++)
+    for(unsigned int i = 0; i<2000;i++)
     {
         m_die->setFaces(i);
         QVERIFY(m_die->getFaces()==i);
@@ -137,12 +138,16 @@ void TestDice::commandsTest()
             << "100*3*8"
             << "help"
             << "la"
+            << "10+10s"
             << "400000D20/400000"
             << "100*3*8";
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
-        qDebug() << cmd << a;
+        if(!a)
+        {
+            qDebug() << cmd << a;
+        }
         QVERIFY(a==true);
     }
 }
@@ -152,17 +157,30 @@ void TestDice::wrongCommandsTest()
 
     commands << "1L[cheminée,chocolat,épée,arc,chute de pierre"
             << "10d10c"
-            << "10d10a"
-            << "10+10s"
-            << "1/0";
+            << "10d10a";
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
-        qDebug() << cmd << a;
+
         QVERIFY(a==false);
     }
 }
+void TestDice::wrongCommandsExecutionTimeTest()
+{
+    QStringList commands;
 
+    commands << "1/0";
+
+
+    foreach(QString cmd, commands)
+    {
+        bool a = m_diceParser->parseLine(cmd);
+        m_diceParser->Start();
+        QVERIFY(m_diceParser->getErrorList().isEmpty() == false);
+
+
+    }
+}
 void TestDice::cleanupTestCase()
 {
     delete m_die;
