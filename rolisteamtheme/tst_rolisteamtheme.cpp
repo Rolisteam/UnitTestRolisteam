@@ -21,12 +21,12 @@
 
 #include <rolisteamtheme.h>
 
-class PreferencesTest : public QObject
+class RolisteamThemeTest : public QObject
 {
     Q_OBJECT
 
 public:
-    PreferencesTest();
+    RolisteamThemeTest();
 
 private slots:
     void testPreferenceRegisterValue();
@@ -38,43 +38,35 @@ private slots:
 private:
     RolisteamTheme* m_theme;
 };
-PreferencesTest::PreferencesTest()
+RolisteamThemeTest::RolisteamThemeTest()
 {
 
 }
 
 
-void PreferencesTest::testPreferenceRegisterValue()
+void RolisteamThemeTest::testPreferenceRegisterValue()
 {
-    m_preferences->registerValue("key",300);
 
-    QVERIFY(m_preferences->value("key",400)==300);
 }
-void PreferencesTest::testNotOverridePreferenceValue()
+void RolisteamThemeTest::testNotOverridePreferenceValue()
 {
-    m_preferences->registerValue("key1",300,false);
-    QVERIFY(m_preferences->value("key1",400)==300);
-    m_preferences->registerValue("key1",100,false);
-    QVERIFY(m_preferences->value("key1",400)==300);
+
 }
-void PreferencesTest::testOverridePreferenceValue()
+void RolisteamThemeTest::testOverridePreferenceValue()
 {
-    m_preferences->registerValue("key2",300);
-    QVERIFY(m_preferences->value("key2",400)==300);
-    m_preferences->registerValue("key2",100);
-    QVERIFY(m_preferences->value("key2",400)==100);
+
 }
-void PreferencesTest::initTestCase()
+void RolisteamThemeTest::initTestCase()
 {
-    m_preferences = PreferencesManager::getInstance();
+
 }
 
-void PreferencesTest::cleanupTestCase()
+void RolisteamThemeTest::cleanupTestCase()
 {
 
 }
 
 
-QTEST_MAIN(PreferencesTest);
+QTEST_MAIN(RolisteamThemeTest);
 
-#include "tst_preferencestest.moc"
+#include "tst_rolisteamtheme.moc"

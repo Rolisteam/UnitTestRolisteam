@@ -176,7 +176,7 @@ void TestDice::wrongCommandsExecutionTimeTest()
     {
         bool a = m_diceParser->parseLine(cmd);
         m_diceParser->Start();
-        QVERIFY(m_diceParser->getErrorList().isEmpty() == false);
+        QVERIFY(m_diceParser->getErrorMap().isEmpty() == false);
 
 
     }
