@@ -1,6 +1,6 @@
 include(../UnitTestRolisteam.pri)
 
-TARGET = tst_preferences
+TARGET = tst_rolisteamtheme
 CONFIG   += console
 CONFIG   -= app_bundle
 

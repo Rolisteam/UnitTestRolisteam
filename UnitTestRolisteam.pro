@@ -6,6 +6,7 @@ SUBDIRS = \
     Dice \
     dataCleverURI \
     preferences \
+    colorButton\
     rolisteamtheme
     #picture \
 #    dataChapter \ #chat MainWindow  picture   map Dice
