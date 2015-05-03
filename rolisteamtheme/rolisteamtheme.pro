@@ -4,6 +4,8 @@ TARGET = tst_rolisteamtheme
 CONFIG   += console
 CONFIG   -= app_bundle
 
+QT += widgets gui
+
 TEMPLATE = app
 
 HEADERS += ../$$ROLISTEAMSRC/src/preferences/rolisteamtheme.h
