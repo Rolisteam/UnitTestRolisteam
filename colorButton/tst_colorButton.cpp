@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2015 by Renaud Guezennec
+ *   Copyright (C) 2015 by Renaud Guezennec                                *
  *   Copyright (C) 2015 by Benoit Lagarde                                  *
  *   http://renaudguezennec.homelinux.org/accueil,3.html                   *
  *                                                                         *
