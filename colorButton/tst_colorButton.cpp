@@ -1,5 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2015 by Renaud Guezennec                                *
+ *   Copyright (C) 2015 by Renaud Guezennec
+ *   Copyright (C) 2015 by Benoit Lagarde                                  *
  *   http://renaudguezennec.homelinux.org/accueil,3.html                   *
  *                                                                         *
  *   Rolisteam is free software; you can redistribute it and/or modify     *
