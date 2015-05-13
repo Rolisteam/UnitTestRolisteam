@@ -157,7 +157,11 @@ void TestDice::wrongCommandsTest()
 
     commands << "1L[cheminée,chocolat,épée,arc,chute de pierre"
             << "10d10c"
-            << "10d10a";
+            << "10d10a"
+            << "10d0a[>7]"
+            << "10d-8a[>7]"
+            << "aiteanetauearuteurn"
+            << "pajaejlbnmàw";
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
@@ -174,7 +178,7 @@ void TestDice::wrongCommandsExecutionTimeTest()
 
     foreach(QString cmd, commands)
     {
-        bool a = m_diceParser->parseLine(cmd);
+        m_diceParser->parseLine(cmd);
         m_diceParser->Start();
         QVERIFY(m_diceParser->getErrorMap().isEmpty() == false);
 
