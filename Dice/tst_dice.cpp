@@ -140,7 +140,9 @@ void TestDice::commandsTest()
             << "la"
             << "10+10s"
             << "400000D20/400000"
-            << "100*3*8";
+            << "100*3*8"
+            << "10d[-8--1]"
+            << "10d[0-9]";
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
