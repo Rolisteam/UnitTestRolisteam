@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2015 by Renaud Guezennec                                *
+ *   Copyright (C) 2015 by Benoit Lagarde                                  *
  *   http://renaudguezennec.homelinux.org/accueil,3.html                   *
  *                                                                         *
  *   Rolisteam is free software; you can redistribute it and/or modify     *
@@ -34,6 +35,7 @@ private slots:
     void getAndSetTest();
     void colorChangedTest();
     void colorChangedTwiceTest();
+    void colorChangedTwiceDifferentTest();
 
 private:
     ColorButton* m_colorButton;
@@ -68,6 +70,15 @@ void ColorButtonTest::colorChangedTwiceTest()
     m_colorButton->setColor(test_color);
     m_colorButton->setColor(test_color);
     QCOMPARE(spy.count(), 1);
+}
+void ColorButtonTest::colorChangedTwiceDifferentTest()
+{
+    QColor  test_color(12,74,180);
+    QColor  test_color2(74,180,12);
+    QSignalSpy spy(m_colorButton, SIGNAL(colorChanged(QColor)));
+    m_colorButton->setColor(test_color);
+    m_colorButton->setColor(test_color2);
+    QCOMPARE(spy.count(), 2);
 }
 void ColorButtonTest::cleanupTestCase()
 {
