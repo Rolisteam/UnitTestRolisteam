@@ -146,7 +146,7 @@ void TestDice::commandsTest()
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
-        QVERIFY2(a==true,cmd);
+        QVERIFY2(a==true,cmd.toStdString().c_str());
     }
 }
 void TestDice::wrongCommandsTest()
@@ -164,7 +164,7 @@ void TestDice::wrongCommandsTest()
     {
         bool a = m_diceParser->parseLine(cmd);
 
-        QVERIFY2(a==false,cmd);
+        QVERIFY2(a==false,cmd.toStdString().c_str());
     }
 }
 void TestDice::wrongCommandsExecutionTimeTest()
@@ -178,7 +178,7 @@ void TestDice::wrongCommandsExecutionTimeTest()
     {
         m_diceParser->parseLine(cmd);
         m_diceParser->Start();
-        QVERIFY2(m_diceParser->getErrorMap().isEmpty() == false,cmd);
+        QVERIFY2(m_diceParser->getErrorMap().isEmpty() == false,cmd.toStdString().c_str());
 
 
     }

@@ -51,21 +51,21 @@ void ColorButtonTest::initTestCase()
 
 void ColorButtonTest::getAndSetTest()
 {
-    QColor  test_color(12,74,180);
+    QColor  test_color(12,74,181);
     m_colorButton->setColor(test_color);
     QColor result = m_colorButton->color();
     QVERIFY(result==test_color);
 }
 void ColorButtonTest::colorChangedTest()
 {
-    QColor  test_color(12,74,180);
+    QColor  test_color(12,74,182);
     QSignalSpy spy(m_colorButton, SIGNAL(colorChanged(QColor)));
     m_colorButton->setColor(test_color);
     QCOMPARE(spy.count(), 1);
 }
 void ColorButtonTest::colorChangedTwiceTest()
 {
-    QColor  test_color(12,74,180);
+    QColor  test_color(12,74,183);
     QSignalSpy spy(m_colorButton, SIGNAL(colorChanged(QColor)));
     m_colorButton->setColor(test_color);
     m_colorButton->setColor(test_color);
@@ -73,7 +73,7 @@ void ColorButtonTest::colorChangedTwiceTest()
 }
 void ColorButtonTest::colorChangedTwiceDifferentTest()
 {
-    QColor  test_color(12,74,180);
+    QColor  test_color(12,74,184);
     QColor  test_color2(74,180,12);
     QSignalSpy spy(m_colorButton, SIGNAL(colorChanged(QColor)));
     m_colorButton->setColor(test_color);
