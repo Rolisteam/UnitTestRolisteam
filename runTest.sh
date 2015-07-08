@@ -19,5 +19,5 @@ make > /dev/null
 
 find /home/renaud/application/mine/build-UnitTestRolisteam-Qt5_4-Debug -executable -type f -exec bash -c {} \;
 
-cd /home/renaud/application/mine/svnToGit/rolisteam/
+cd /home/renaud/application/mine/rolisteam/
 doxygen rolisteam.dox  > /dev/null 2>&1
