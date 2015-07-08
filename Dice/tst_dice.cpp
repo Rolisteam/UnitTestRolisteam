@@ -160,6 +160,7 @@ void TestDice::wrongCommandsTest()
             << "10d-8a[>7]"
             << "aiteanetauearuteurn"
             << "pajaejlbnmàw";
+
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
@@ -171,8 +172,8 @@ void TestDice::wrongCommandsExecutionTimeTest()
 {
     QStringList commands;
 
-    commands << "1/0";
-
+    commands << "1/0"
+             << "!!!!";
 
     foreach(QString cmd, commands)
     {
