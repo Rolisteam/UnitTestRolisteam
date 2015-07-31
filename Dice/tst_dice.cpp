@@ -158,6 +158,7 @@ void TestDice::wrongCommandsTest()
             << "10d10a"
             << "10d0a[>7]"
             << "10d-8a[>7]"
+            << "10d10k11"
             << "aiteanetauearuteurn"
             << "pajaejlbnmàw";
 
@@ -173,15 +174,15 @@ void TestDice::wrongCommandsExecutionTimeTest()
     QStringList commands;
 
     commands << "1/0"
+             << ""
+             << "10d10k11"
              << "!!!!";
 
     foreach(QString cmd, commands)
     {
-        m_diceParser->parseLine(cmd);
+        bool test = m_diceParser->parseLine(cmd);
         m_diceParser->Start();
-        QVERIFY2(m_diceParser->getErrorMap().isEmpty() == false,cmd.toStdString().c_str());
-
-
+        QVERIFY2(m_diceParser->getErrorMap().isEmpty() == false || !test,cmd.toStdString().c_str());
     }
 }
 void TestDice::cleanupTestCase()
