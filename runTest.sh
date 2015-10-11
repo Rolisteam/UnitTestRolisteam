@@ -14,7 +14,7 @@ git pull origin --quiet
 
 
 cd /home/renaud/application/mine/build-UnitTestRolisteam-Qt5_4-Debug
-/home/renaud/application/other/qt5/qtbase/bin/qmake -r /home/renaud/application/mine/UnitTestRolisteam/UnitTestRolisteam.pro
+/home/renaud/application/other/android/Qt5.4.0/5.4/gcc_64/bin/qmake -r /home/renaud/application/mine/UnitTestRolisteam/UnitTestRolisteam.pro
 make > /dev/null
 
 find /home/renaud/application/mine/build-UnitTestRolisteam-Qt5_4-Debug -executable -type f -exec bash -c {} \;
