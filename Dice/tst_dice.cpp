@@ -138,6 +138,8 @@ void TestDice::commandsTest()
             << "100*3*8"
             << "help"
             << "la"
+            << "10D10c[<2|>7]"
+            << "10D10e[=1|=10]k4"
             << "10+10s"
             << "400000D20/400000"
             << "100*3*8"
@@ -158,13 +160,14 @@ void TestDice::wrongCommandsTest()
             << "10d10a"
             << "10d0a[>7]"
             << "10d-8a[>7]"
-            << "10d10k11"
+            << "0d10"
             << "aiteanetauearuteurn"
             << "pajaejlbnmàw";
 
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
+        qDebug() << m_diceParser->getErrorMap().size();
 
         QVERIFY2(a==false,cmd.toStdString().c_str());
     }
