@@ -160,14 +160,12 @@ void TestDice::wrongCommandsTest()
             << "10d10a"
             << "10d0a[>7]"
             << "10d-8a[>7]"
-            << "0d10"
             << "aiteanetauearuteurn"
             << "pajaejlbnmàw";
 
     foreach(QString cmd, commands)
     {
         bool a = m_diceParser->parseLine(cmd);
-        qDebug() << m_diceParser->getErrorMap().size();
 
         QVERIFY2(a==false,cmd.toStdString().c_str());
     }
@@ -178,6 +176,7 @@ void TestDice::wrongCommandsExecutionTimeTest()
 
     commands << "1/0"
              << ""
+             << "0d10"
              << "10d10k11"
              << "!!!!";
 
