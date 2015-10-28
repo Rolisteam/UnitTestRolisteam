@@ -4,7 +4,7 @@ SOURCES += \
     tst_dice.cpp
 
 TEMPLATE = app
-TARGET=diceTest
+TARGET= tst_diceParser
 MOC_DIR=trash
 OBJECTS_DIR=trash
 
