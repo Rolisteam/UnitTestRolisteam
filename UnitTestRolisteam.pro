@@ -8,8 +8,9 @@ SUBDIRS = \
     preferences \
     colorButton\
     paletteModel\
- #     network \
+    chat \
     rolisteamtheme
+ #     network \
     #picture \
 #    dataChapter \ #chat MainWindow  picture   map Dice
   #  dataplayer \
