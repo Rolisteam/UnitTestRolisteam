@@ -20,6 +20,7 @@
 #include <QtTest/QtTest>
 
 #include <improvedtextedit.h>
+#include <chatwindow.h>
 
 class ChatWindowTest : public QObject
 {
@@ -37,6 +38,7 @@ private slots:
 
 private:
     ImprovedTextEdit* m_impTextEditor;
+    ChatWindow* m_chatWindow;
 };
 ChatWindowTest::ChatWindowTest()
 {
@@ -45,6 +47,8 @@ ChatWindowTest::ChatWindowTest()
 void ChatWindowTest::initTestCase()
 {
     m_impTextEditor =new ImprovedTextEdit(NULL);
+
+    m_chatWindow = new ChatWindow(NULL,NULL);
 }
 
 //void ChatWindowTest::getAndSetTest()
