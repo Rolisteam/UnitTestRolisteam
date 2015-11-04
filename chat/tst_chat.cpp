@@ -21,6 +21,13 @@
 
 #include <improvedtextedit.h>
 #include <chatwindow.h>
+#include "nullchat.h"
+
+class Player;
+class NetworkLink;
+class NetworkMessage;
+
+
 
 class ChatWindowTest : public QObject
 {
@@ -33,6 +40,7 @@ private slots:
     void initTestCase();
     void cleanupTestCase();
 //    void getAndSetTest();
+	void showMessage();
     void enterText();
 
 
@@ -46,9 +54,9 @@ ChatWindowTest::ChatWindowTest()
 }
 void ChatWindowTest::initTestCase()
 {
-    m_impTextEditor =new ImprovedTextEdit(NULL);
+	m_chatWindow = new ChatWindow(new NullChat(),NULL);
+	m_impTextEditor = m_chatWindow->getTextZone();
 
-    m_chatWindow = new ChatWindow(NULL,NULL);
 }
 
 //void ChatWindowTest::getAndSetTest()
@@ -64,11 +72,18 @@ void ChatWindowTest::enterText()
     QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
     QCOMPARE(spy.count(), 1);
 }
-//void ChatWindowTest::colorChangedTwiceTest()
-//{
+void ChatWindowTest::showMessage()
+{
+	QSignalSpy spy(m_chatWindow, SIGNAL(ChatWindowHasChanged(ChatWindow*)));
+	QString test = QStringLiteral("/me draws his weapons");
+	m_impTextEditor->setText(test);
+	QSignalSpy spy2(m_impTextEditor, SIGNAL(textValidated(bool,QString)));
+	QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
 
-//    QCOMPARE(spy.count(), 1);
-//}
+
+	QCOMPARE(spy.count(), 1);
+	QCOMPARE(spy2.count(), 1);
+}
 //void ChatWindowTest::colorChangedTwiceDifferentTest()
 //{
 
