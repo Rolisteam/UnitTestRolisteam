@@ -21,6 +21,8 @@
 
 #include <improvedtextedit.h>
 #include <chatwindow.h>
+#include <data/persons.h>
+#include <userlist/playersList.h>
 #include "nullchat.h"
 
 class Player;
@@ -37,7 +39,7 @@ public:
     ChatWindowTest();
 
 private slots:
-    void initTestCase();
+	void initTestCase();
     void cleanupTestCase();
 //    void getAndSetTest();
 	void showMessage();
@@ -47,6 +49,7 @@ private slots:
 private:
     ImprovedTextEdit* m_impTextEditor;
     ChatWindow* m_chatWindow;
+	Player*	    m_player;
 };
 ChatWindowTest::ChatWindowTest()
 {
@@ -54,9 +57,12 @@ ChatWindowTest::ChatWindowTest()
 }
 void ChatWindowTest::initTestCase()
 {
+	qDebug() << "test init";
 	m_chatWindow = new ChatWindow(new NullChat(),NULL);
 	m_impTextEditor = m_chatWindow->getTextZone();
 
+	m_player = new Player("bob",Qt::black,false);
+	PlayersList::instance()->setLocalPlayer(m_player);
 }
 
 //void ChatWindowTest::getAndSetTest()
