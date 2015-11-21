@@ -22,8 +22,13 @@
 #include <improvedtextedit.h>
 #include <chatwindow.h>
 #include <chat.h>
+#include <data/persons.h>
+#include <userlist/playersList.h>
+#include "nullchat.h"
 
-
+class Player;
+class NetworkLink;
+class NetworkMessage;
 
 class ChatWindowTest : public QObject
 {
@@ -33,15 +38,17 @@ public:
     ChatWindowTest();
 
 private slots:
-    void initTestCase();
+	void initTestCase();
     void cleanupTestCase();
     void changeUser();
+	void showMessage();
     void enterText();
     void resendPrevious();
 
 private:
     ImprovedTextEdit* m_impTextEditor;
     ChatWindow* m_chatWindow;
+	Player*	    m_player;
 };
 ChatWindowTest::ChatWindowTest()
 {
@@ -49,9 +56,13 @@ ChatWindowTest::ChatWindowTest()
 }
 void ChatWindowTest::initTestCase()
 {
-    m_impTextEditor =new ImprovedTextEdit(NULL);
+    m_player = new Player("bob",Qt::black,false);
+    PlayersList::instance()->setLocalPlayer(m_player);
 
-    m_chatWindow = new ChatWindow(new PublicChat());
+	m_chatWindow = new ChatWindow(new PublicChat());
+	m_impTextEditor = m_chatWindow->getTextZone();
+
+    
 }
 
 //void ChatWindowTest::getAndSetTest()
@@ -82,6 +93,19 @@ void ChatWindowTest::resendPrevious()
     QCOMPARE(txt,QStringLiteral("Text Test Text Test"));
         QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
     QCOMPARE(spy.count(), 1);
+}
+void ChatWindowTest::showMessage()
+{
+	QSignalSpy spy(m_chatWindow, SIGNAL(ChatWindowHasChanged(ChatWindow*)));
+    QTest::keyPress(m_impTextEditor,Qt::Key_Up,Qt::ControlModifier);
+	QString test = QStringLiteral("/me draws his weapons");
+	m_impTextEditor->setText(test);
+	QSignalSpy spy2(m_impTextEditor, SIGNAL(textValidated(bool,QString)));
+	QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
+
+
+	QCOMPARE(spy.count(), 1);
+	QCOMPARE(spy2.count(), 1);
 }
 void ChatWindowTest::cleanupTestCase()
 {

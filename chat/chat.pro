@@ -4,7 +4,6 @@ TARGET = tst_chat
 CONFIG   += console
 CONFIG   -= app_bundle
 
-
 DEFINES += NULL_PLAYER UNIT_TEST
 
 QT += widgets gui printsupport xml
@@ -56,7 +55,6 @@ INCLUDEPATH += ../$$ROLISTEAMSRC/src/chat/ ../$$ROLISTEAMSRC/src/ ../$$ROLISTEAM
 INCLUDEPATH += ../lib/diceparser/
 INCLUDEPATH += ../lib/diceparser/node
 INCLUDEPATH += ../lib/diceparser/result
-
 
 FORMS += ../$$ROLISTEAMSRC/src/mainwindow.ui
 
