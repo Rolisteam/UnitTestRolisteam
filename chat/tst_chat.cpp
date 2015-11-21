@@ -21,6 +21,9 @@
 
 #include <improvedtextedit.h>
 #include <chatwindow.h>
+#include <chat.h>
+
+
 
 class ChatWindowTest : public QObject
 {
@@ -32,9 +35,9 @@ public:
 private slots:
     void initTestCase();
     void cleanupTestCase();
-//    void getAndSetTest();
+    void changeUser();
     void enterText();
-
+    void resendPrevious();
 
 private:
     ImprovedTextEdit* m_impTextEditor;
@@ -48,7 +51,7 @@ void ChatWindowTest::initTestCase()
 {
     m_impTextEditor =new ImprovedTextEdit(NULL);
 
-    m_chatWindow = new ChatWindow(NULL,NULL);
+    m_chatWindow = new ChatWindow(new PublicChat());
 }
 
 //void ChatWindowTest::getAndSetTest()
@@ -64,16 +67,22 @@ void ChatWindowTest::enterText()
     QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
     QCOMPARE(spy.count(), 1);
 }
-//void ChatWindowTest::colorChangedTwiceTest()
-//{
-
-//    QCOMPARE(spy.count(), 1);
-//}
-//void ChatWindowTest::colorChangedTwiceDifferentTest()
-//{
-
-//    QCOMPARE(spy.count(), 2);
-//}
+void ChatWindowTest::changeUser()
+{
+    QSignalSpy spy(m_impTextEditor, SIGNAL(ctrlUp()));
+    QTest::keyPress(m_impTextEditor,Qt::Key_Up,Qt::ControlModifier);
+    QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
+    QCOMPARE(spy.count(), 1);
+}
+void ChatWindowTest::resendPrevious()
+{
+    QSignalSpy spy(m_impTextEditor, SIGNAL(textValidated(bool,QString)));
+    QTest::keyPress(m_impTextEditor,Qt::Key_Up);
+    QString txt = m_impTextEditor->document()->toPlainText();
+    QCOMPARE(txt,QStringLiteral("Text Test Text Test"));
+        QTest::keyPress(m_impTextEditor,Qt::Key_Enter);
+    QCOMPARE(spy.count(), 1);
+}
 void ChatWindowTest::cleanupTestCase()
 {
     delete m_impTextEditor;

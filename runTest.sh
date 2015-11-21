@@ -7,12 +7,14 @@ source ~/.ssh/environment
 export DISPLAY=:0
 
 cd /home/renaud/application/mine/UnitTestRolisteam/lib/rolisteam
-git pull origin --quiet
+#git pull origin --quiet
 
 cd /home/renaud/application/mine/UnitTestRolisteam/lib/diceparser
-git pull origin --quiet
+#git pull origin --quiet
 
 
+rm -rf /home/renaud/application/mine/build-UnitTestRolisteam-Qt5_4-Debug/*
+mkdir -p /home/renaud/application/mine/build-UnitTestRolisteam-Qt5_4-Debug/
 cd /home/renaud/application/mine/build-UnitTestRolisteam-Qt5_4-Debug
 /home/renaud/application/other/android/Qt5.4.0/5.4/gcc_64/bin/qmake -r /home/renaud/application/mine/UnitTestRolisteam/UnitTestRolisteam.pro
 make > /dev/null
