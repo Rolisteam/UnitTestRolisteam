@@ -24,7 +24,6 @@
 #include <chat.h>
 #include <data/persons.h>
 #include <userlist/playersList.h>
-#include "nullchat.h"
 
 class Player;
 class NetworkLink;
