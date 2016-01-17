@@ -139,6 +139,7 @@ void TestDice::commandsTest()
             << "help"
             << "la"
             << "10D10c[<2|>7]"
+            << "10D6c[=2|=4|=6]"
             << "10D10e[=1|=10]k4"
             << "10+10s"
             << "1d6e6;1d4e4mk1"
