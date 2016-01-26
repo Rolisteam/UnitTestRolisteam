@@ -144,9 +144,10 @@ void TestDice::commandsTest()
             << "10+10s"
             << "1d6e6;1d4e4mk1"
             << "400000D20/400000"
+            << "1d100e[>=95]i[<5]{-1d100e95}"
             << "100*3*8"
+            << "1d100i[<70]{1d10i[=10]{1d100i[<70]{1d10e10}}}"
             << "10d[-8--1]"
-            << "8D20+10*@c[=20]"
             << "10d[0-9]";
     foreach(QString cmd, commands)
     {
@@ -181,6 +182,7 @@ void TestDice::wrongCommandsExecutionTimeTest()
              << ""
              << "0d10"
              << "10d10k11"
+             << "8D20+10*@c[=20]"
              << "!!!!";
 
     foreach(QString cmd, commands)
