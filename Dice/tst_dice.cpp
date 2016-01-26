@@ -146,6 +146,7 @@ void TestDice::commandsTest()
             << "400000D20/400000"
             << "100*3*8"
             << "10d[-8--1]"
+            << "8D20+10*@c[=20]"
             << "10d[0-9]";
     foreach(QString cmd, commands)
     {
