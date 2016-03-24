@@ -1,5 +1,7 @@
 ROLISTEAMSRC = lib/rolisteam
 
+DEFINES += NULL_PLAYER UNIT_TEST
+
 INCLUDEPATH = $$ROLISTEAMSRC/src \
               $$ROLISTEAMSRC/src/widget \
                 $$ROLISTEAMSRC/src/charactersheet \
@@ -33,12 +35,12 @@ DEPENDPATH = $$ROLISTEAMSRC/src \
                 $$ROLISTEAMSRC/src/userlist \
              $$ROLISTEAMSRC/bin \
 
-DEFINES += VERSION_MAJOR=1 VERSION_MIDDLE=7 VERSION_MINOR=0
+DEFINES += VERSION_MAJOR=1 VERSION_MIDDLE=8 VERSION_MINOR=0
 
 
 
 
-
+CONFIG += c++11
 
 TEMPLATE=app
 QT += core \

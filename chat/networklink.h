@@ -1,6 +1,6 @@
 /***************************************************************************
-    *   Copyright (C) 2015 by Renaud Guezennec                                *
-    *   http://renaudguezennec.homelinux.org/accueil,3.html                   *
+    *   Copyright (C) 2016 by Renaud Guezennec                                *
+    *   http://www.rolisteam.org                                              *
     *                                                                         *
     *   rolisteam is free software; you can redistribute it and/or modify     *
     *   it under the terms of the GNU General Public License as published by  *
@@ -17,8 +17,8 @@
     *   Free Software Foundation, Inc.,                                       *
     *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
     ***************************************************************************/
-#ifndef NETWORKLINK_H
-#define NETWORKLINK_H
+#ifndef NetworkLink_H
+#define NetworkLink_H
 
 
 class NetworkLink

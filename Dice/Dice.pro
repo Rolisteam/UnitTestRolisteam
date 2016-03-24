@@ -8,6 +8,8 @@ TARGET= tst_diceParser
 MOC_DIR=trash
 OBJECTS_DIR=trash
 
+
+
 QT += testlib
 
 INCLUDEPATH += ../lib/diceparser/

@@ -6,12 +6,14 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-HEADERS += ../$$ROLISTEAMSRC/src/preferences/preferencesmanager.h
+HEADERS += ../$$ROLISTEAMSRC/src/preferences/preferencesmanager.h \
+    ../$$ROLISTEAMSRC/src/data/resourcesnode.h \
 
 
 SOURCES += \
     tst_preferencestest.cpp \
     ../$$ROLISTEAMSRC/src/data/cleveruri.cpp \
+    ../$$ROLISTEAMSRC/src/data/resourcesnode.cpp \
     ../$$ROLISTEAMSRC/src/preferences/preferencesmanager.cpp
 
 INCLUDEPATH += ../$$ROLISTEAMSRC/src/preferences/

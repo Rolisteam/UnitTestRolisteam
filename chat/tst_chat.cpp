@@ -19,10 +19,13 @@
  ***************************************************************************/
 #include <QtTest/QtTest>
 
+//#include "networklink.h"
+
 #include <improvedtextedit.h>
 #include <chatwindow.h>
 #include <chat.h>
-#include <data/persons.h>
+#include <data/person.h>
+#include <data/player.h>
 #include <userlist/playersList.h>
 
 class Player;
@@ -59,9 +62,8 @@ void ChatWindowTest::initTestCase()
     PlayersList::instance()->setLocalPlayer(m_player);
 
 	m_chatWindow = new ChatWindow(new PublicChat());
-	m_impTextEditor = m_chatWindow->getTextZone();
-
-    
+    m_chatWindow->setLocalPlayer(m_player);
+    m_impTextEditor = m_chatWindow->getEditionZone();
 }
 
 //void ChatWindowTest::getAndSetTest()
