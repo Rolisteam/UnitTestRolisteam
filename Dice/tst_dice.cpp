@@ -128,6 +128,7 @@ void TestDice::commandsTest()
             << "10d10e11"
             << "1D8+2D6+7"
             << "D25"
+            << "1L[tete[10],ventre[50],jambe[40]]"
             << "2d6c[%2=0]"
             << "D25+D10"
             << "D25;D10"
