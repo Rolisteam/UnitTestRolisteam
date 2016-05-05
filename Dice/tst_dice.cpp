@@ -145,6 +145,7 @@ void TestDice::commandsTest()
             << "10D10e[=1|=10]k4"
             << "10+10s"
             << "1d6e6;1d4e4mk1"
+            << "1d6e6;1d4e4mk1"
             << "400000D20/400000"
             << "1d100e[>=95]i[<5]{-1d100e95}"
             << "100*3*8"
@@ -153,8 +154,12 @@ void TestDice::commandsTest()
             << "10d[0-9]";
     foreach(QString cmd, commands)
     {
+       //qDebug() << cmd;
         bool a = m_diceParser->parseLine(cmd);
         QVERIFY2(a==true,cmd.toStdString().c_str());
+
+        m_diceParser->Start();
+        QVERIFY2(m_diceParser->humanReadableError().isEmpty(),cmd.toStdString().c_str());
     }
 }
 void TestDice::wrongCommandsTest()
