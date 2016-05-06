@@ -154,7 +154,7 @@ void TestDice::commandsTest()
             << "10d[0-9]";
     foreach(QString cmd, commands)
     {
-       //qDebug() << cmd;
+        qDebug() << cmd;
         bool a = m_diceParser->parseLine(cmd);
         QVERIFY2(a==true,cmd.toStdString().c_str());
 

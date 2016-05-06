@@ -32,6 +32,7 @@ HEADERS += ../$$ROLISTEAMSRC/src/chat/improvedtextedit.h \
     ../$$ROLISTEAMSRC/src/userlist/playerslistproxy.h\
     networklink.h
 
+#    ../$$ROLISTEAMSRC/src/charactersheet/charactersheet.h\
 SOURCES += \
     tst_chat.cpp \
     ../$$ROLISTEAMSRC/src/preferences/preferencesmanager.cpp\
@@ -55,6 +56,7 @@ SOURCES += \
     ../$$ROLISTEAMSRC/src/userlist/playerslistproxy.cpp\
     networklink.cpp
 
+#    ../$$ROLISTEAMSRC/src/charactersheet/charactersheet.cpp\
 #    ../$$ROLISTEAMSRC/src/network/networklink.cpp\     ../$$ROLISTEAMSRC/src/network/networklink.h\
 
 
