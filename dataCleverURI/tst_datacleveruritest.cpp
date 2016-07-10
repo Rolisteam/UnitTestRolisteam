@@ -78,7 +78,7 @@ void DataCleverURITest::testCleverURISetGet()
     m_cleverURI->setUri(path);
     QVERIFY2(m_cleverURI->getUri()==path,"URI is wrong!");
 
-    QVERIFY2(m_cleverURI->getData(0).toString()=="file","ShortName is wrong!");
+    QVERIFY2(m_cleverURI->getData(ResourcesNode::NAME).toString()=="file","ShortName is wrong!");
 
     QVERIFY2(m_cleverURI->hasChildren()==false,"CleverURI has children, that should not be!");
 }
