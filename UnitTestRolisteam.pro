@@ -9,6 +9,7 @@ SUBDIRS = \
     colorButton\
     paletteModel\
     chat \
+    charactersheet \
     rolisteamtheme
  #     network \
     #picture \
