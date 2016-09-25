@@ -141,6 +141,7 @@ void TestDice::commandsTest()
             << "help"
             << "la"
             << "10D10c[<2|>7]"
+            << "1L[tete,bras droit,bras gauche,jambe droite,jambe gauche,ventre[6-7],buste[8-10]]"
             << "10D6c[=2|=4|=6]"
             << "10D10e[=1|=10]k4"
             << "10+10s"
@@ -150,8 +151,9 @@ void TestDice::commandsTest()
             << "1d100e[>=95]i[<5]{-1d100e95}"
             << "100*3*8"
             << "1d100i[<70]{1d10i[=10]{1d100i[<70]{1d10e10}}}"
-            << "1L[tete,bras droit,bras gauche,jambe droite,jambe gauche,ventre[6-7],buste[7-10]]"
+            << ""
             << "10d[-8--1]"
+            << "4d6p[4:blue]c[>=4];1d6p[1:#FFFFFF]c6-@c1;1d6p[1:#FF0000]c[>=4]+@c6-@c1"
             << "10d[0-9]";
     foreach(QString cmd, commands)
     {
