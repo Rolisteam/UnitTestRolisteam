@@ -153,6 +153,8 @@ void TestDice::commandsTest()
             << "1d100i[<70]{1d10i[=10]{1d100i[<70]{1d10e10}}}"
             << ""
             << "10d[-8--1]"
+            << "4d6e6i[=4]{-4}+2"
+            << "4d6e6f[!=4]+2"
             << "4d6p[4:blue]c[>=4];1d6p[1:#FFFFFF]c6-@c1;1d6p[1:#FF0000]c[>=4]+@c6-@c1"
             << "10d[0-9]";
     foreach(QString cmd, commands)
