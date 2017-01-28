@@ -38,6 +38,7 @@ private slots:
     void diceRollD10Test();
     void diceRollD20Test();
     void commandEndlessLoop();
+    void mathPriority();
     void commandsTest();
     void wrongCommandsTest();
     void cleanupTestCase();
@@ -105,7 +106,7 @@ void TestDice::commandsTest()
 {
     QStringList commands;
 
-    commands << "1L[cheminée,chocolat,épée,arc,chute de pierre]"
+   commands << "1L[cheminée,chocolat,épée,arc,chute de pierre]"
             << "10d10c[>=6]-@c[=1]"
             << "10d10c[>=6]-@c[=1]-@c[=1]"
             << "10d10c[>6]+@c[=10]"
@@ -143,7 +144,7 @@ void TestDice::commandsTest()
             << "10D10c[<2|>7]"
             << "1L[tete,bras droit,bras gauche,jambe droite,jambe gauche,ventre[6-7],buste[8-10]]"
             << "10D6c[=2|=4|=6]"
-            << "10D10e[=1|=10]k4"
+            <<"10D10e[=1|=10]k4"
             << "10+10s"
             << "1d6e6;1d4e4mk1"
             << "1d6e6;1d4e4mk1"
@@ -151,7 +152,9 @@ void TestDice::commandsTest()
             << "1d100e[>=95]i[<5]{-1d100e95}"
             << "100*3*8"
             << "1d100i[<70]{1d10i[=10]{1d100i[<70]{1d10e10}}}"
-            << ""
+            << "10d6c[<2|>5]"
+            << "5-5*5+5"
+            << "4d6i[=6]{+1d6}"
             << "10d[-8--1]"
             << "4d6e6i[=4]{-4}+2"
             << "4d6e6f[!=4]+2"
@@ -190,20 +193,50 @@ void TestDice::wrongCommandsExecutionTimeTest()
 {
     QStringList commands;
 
+    //<< "8D20+10*@c[=20]"
     commands << "1/0"
              << ""
              << "0d10"
              << "10d10k11"
-             << "8D20+10*@c[=20]"
              << "!!!!";
 
     foreach(QString cmd, commands)
     {
         bool test = m_diceParser->parseLine(cmd);
         m_diceParser->Start();
+
         QVERIFY2(m_diceParser->getErrorMap().isEmpty() == false || !test,cmd.toStdString().c_str());
     }
 }
+void TestDice::mathPriority()
+{
+    QStringList commands;
+
+    commands << "10+2"
+             << "2-10"
+             << "5+2*3"
+             << "5-5*5+5"
+             << "5-5/5+5"
+             << "10*(3*2)"
+             << "60/(3*2)"
+             << "5-(5*5+5)";
+
+    QList<qreal> results;
+    results <<12 <<-8 << 11 << -15 << 9 << 60 << 10 << -25;
+
+
+    foreach(QString cmd, commands)
+    {
+        bool test = m_diceParser->parseLine(cmd);
+        m_diceParser->Start();
+        int index = commands.indexOf(cmd);
+        int expect = results.at(index);
+        qreal  result = m_diceParser->getLastIntegerResult();
+
+        QVERIFY2(result == expect,cmd.toStdString().c_str());
+    }
+}
+
 void TestDice::cleanupTestCase()
 {
     delete m_die;
