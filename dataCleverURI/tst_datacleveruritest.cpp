@@ -76,6 +76,7 @@ void DataCleverURITest::testCleverURISetGet()
 
     QString path("/foo/bar/file.map");
     m_cleverURI->setUri(path);
+    m_cleverURI->setName("file");
     QVERIFY2(m_cleverURI->getUri()==path,"URI is wrong!");
 
     QVERIFY2(m_cleverURI->getData(ResourcesNode::NAME).toString()=="file","ShortName is wrong!");

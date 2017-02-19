@@ -41,8 +41,9 @@ private slots:
     void mathPriority();
     void commandsTest();
     void wrongCommandsTest();
-    void cleanupTestCase();
     void wrongCommandsExecutionTimeTest();
+    void scopeDF();
+    void cleanupTestCase();
 
 private:
     Die* m_die;
@@ -63,8 +64,8 @@ void TestDice::getAndSetTest()
 {
     for(unsigned int i = 0; i<2000;i++)
     {
-        m_die->setFaces(i);
-        QVERIFY(m_die->getFaces()==i);
+        m_die->setMaxValue(i);
+        QVERIFY(m_die->getMaxValue()==i);
     }
 
     m_die->setSelected(true);
@@ -77,7 +78,7 @@ void TestDice::getAndSetTest()
 
 void TestDice::diceRollD10Test()
 {
-    m_die->setFaces(10);
+    m_die->setMaxValue(10);
     for(int i = 0; i< 2000; i++)
     {
         m_die->roll(false);
@@ -88,7 +89,7 @@ void TestDice::diceRollD10Test()
 }
 void TestDice::diceRollD20Test()
 {
-    m_die->setFaces(20);
+    m_die->setMaxValue(20);
     for(int i = 0; i< 2000; i++)
     {
         m_die->roll(false);
@@ -206,6 +207,43 @@ void TestDice::wrongCommandsExecutionTimeTest()
         m_diceParser->Start();
 
         QVERIFY2(m_diceParser->getErrorMap().isEmpty() == false || !test,cmd.toStdString().c_str());
+    }
+}
+void TestDice::scopeDF()
+{
+    QStringList commands;
+
+    commands << "1D[-1-1]"
+             << "1D[-10--5]"
+             << "1D[-100-100]"
+             << "1D[-1-0]"
+             << "1D[10-20]"
+             << "1D[30-100]"
+             << "1D[0-99]"
+             << "1D[-2-50]";
+
+    QList< QPair<int,int> > pairMinMax;
+    pairMinMax  << QPair<int,int>(-1,1)
+                << QPair<int,int>(-10,-5)
+                << QPair<int,int>(-100,100)
+                << QPair<int,int>(-1,0)
+                << QPair<int,int>(10,20)
+                << QPair<int,int>(30,100)
+                << QPair<int,int>(0,99)
+                << QPair<int,int>(-2,50);
+
+
+    foreach(QString cmd, commands)
+    {
+        bool test = m_diceParser->parseLine(cmd);
+        m_diceParser->Start();
+        int index = commands.indexOf(cmd);
+        QPair<int,int> expect = pairMinMax.at(index);
+        int min = expect.first;
+        int max = expect.second;
+        qreal  result = m_diceParser->getLastIntegerResult();
+
+        QVERIFY2(result >= min && result <= max,cmd.toStdString().c_str());
     }
 }
 void TestDice::mathPriority()
