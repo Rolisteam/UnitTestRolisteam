@@ -220,6 +220,9 @@ void TestDice::scopeDF()
              << "1D[10-20]"
              << "1D[30-100]"
              << "1D[0-99]"
+             << "5-5*5+5"
+             << "2d20c[<=13]+@c[<=3]"
+             << "6d10c[>=6]-@c1"
              << "1D[-2-50]";
 
     QList< QPair<int,int> > pairMinMax;
@@ -230,6 +233,9 @@ void TestDice::scopeDF()
                 << QPair<int,int>(10,20)
                 << QPair<int,int>(30,100)
                 << QPair<int,int>(0,99)
+                << QPair<int,int>(-15,-15)
+                << QPair<int,int>(0,4)
+                << QPair<int,int>(-6,6)
                 << QPair<int,int>(-2,50);
 
 
